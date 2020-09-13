@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Lint file') {
       steps {
-        sh 'tidylint -q -e index.html'
+        sh 'tidy -q -e index.html'
       }
     }
     stage('Lint Dockerfile') {
@@ -33,7 +33,16 @@ pipeline {
       steps {
         sh 'echo creating EKS cluster'
         withAWS(credentials: 'aws', region: 'ap-south-1') {
-        sh 'create_cluster.sh'
+        sh '''eksctl create cluster \
+            --name capstone \
+            --region ap-south-1 \
+            --nodegroup-name capstone-nodes \
+            --nodes 3 \
+            --nodes-min 1 \
+            --nodes-max 4 \
+            --ssh-access \
+            --ssh-public-key ec2key_capstoneinstance \
+            --managed'''
         }
       } 
     }
@@ -55,7 +64,7 @@ pipeline {
       steps {
         withAWS(credentials: 'aws', region: 'ap-south-1') {
         sh 'kubectl get nodes'
-        sh 'kubectl det dployment'
+        sh 'kubectl get deployment'
         sh 'kubectl get pod -o wide'
         sh 'kubectl get service/capstone'
         } 
