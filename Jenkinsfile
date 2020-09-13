@@ -64,7 +64,7 @@ pipeline {
       steps {
         withAWS(credentials: 'aws', region: 'ap-south-1') {
         sh 'kubectl get nodes'
-        sh 'kubectl det dployment'
+        sh 'kubectl get deployment'
         sh 'kubectl get pod -o wide'
         sh 'kubectl get service/capstone'
         } 
