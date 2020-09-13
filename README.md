@@ -46,4 +46,4 @@ A simple rolling update pipeline will take in a HTML file, pass it through a lin
 
 * Select the appropriate repository and create the pipeline.
 
-* Once the pipeline is completed, ensure the loadbalancer for EKS is workinga as expected and access the DNS from a web browser or CURL.
+* Once the pipeline is completed, ensure the loadbalancer for EKS is working as expected and access the DNS from a web browser or CURL.
