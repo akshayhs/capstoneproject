@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Lint file') {
       steps {
-        sh 'tidylint -q -e index.html'
+        sh 'tidy -q -e index.html'
       }
     }
     stage('Lint Dockerfile') {
